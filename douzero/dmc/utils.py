@@ -155,8 +155,8 @@ def act(i, device, batch_queues, model, flags):
                         "done": torch.stack([torch.tensor(ndarr, device="cpu") for ndarr in done_buf[p][:T]]),
                         "episode_return": torch.stack([torch.tensor(ndarr, device="cpu") for ndarr in episode_return_buf[p][:T]]),
                         "target": torch.stack([torch.tensor(ndarr, device="cpu") for ndarr in target_buf[p][:T]]),
-                        "obs_z": torch.stack([torch.tensor(ndarr, device="cpu") for ndarr in obs_z_buf[p][:T]]),
-                        "obs_x_batch": torch.stack([torch.tensor(ndarr, device="cpu") for ndarr in obs_x_batch_buf[p][:T]]),
+                        "obs_z": torch.stack([torch.as_tensor(ndarr, device="cpu") for ndarr in obs_z_buf[p][:T]]),
+                        "obs_x_batch": torch.stack([torch.as_tensor(ndarr, device="cpu") for ndarr in obs_x_batch_buf[p][:T]]),
                         "obs_type": torch.stack([torch.tensor(ndarr, device="cpu") for ndarr in type_buf[p][:T]])
                     })
                     done_buf[p] = done_buf[p][T:]
